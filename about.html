@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소개 - BangYunseo</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .about-section {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .about-content img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .about-text h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #3498db;
+        }
+
+        .about-text ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="logo">BangYunseo</div>
+        <ul class="nav-links">
+            <li><a href="index.html">홈</a></li>
+            <li><a href="about.html">소개</a></li>
+            <li><a href="portfolio.html">포트폴리오</a></li>
+            <li><a href="contact.html">연락처</a></li>
+            <li id="auth-link">
+                <a href="login.html">로그인</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 소개 섹션 -->
+    <section class="about-section">
+        <h1>소개</h1>
+
+        <div class="about-content">
+            <!-- 프로필 이미지 -->
+            <div>
+                <img src="assets/images/profile.jpg" alt="프로필 사진"
+                    onerror="this.src='https://via.placeholder.com/400x400?text=Profile'">
+            </div>
+
+            <!-- 소개 텍스트 -->
+            <div class="about-text">
+                <h2>방윤서 (BangYunseo)</h2>
+                <p>
+                    안녕하세요! IT 개발/기획 업무로 취업을 희망하는 SW 개발자입니다.
+                </p>
+                <p>
+                    [자기소개 내용을 여기에 작성하세요. 2-3문단 정도]
+                </p>
+
+                <h3>💼 관심 분야</h3>
+                <ul>
+                    <li>웹 개발 (Full-stack)</li>
+                    <li>게임 개발 (C++, SDL2)</li>
+                    <li>알고리즘 & 자료구조</li>
+                    <li>비전 검사 시스템 (Cognex VisionPro)</li>
+                </ul>
+
+                <h3>🛠️ 기술 스택</h3>
+                <div class="tech-stack">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">HTML/CSS</span>
+                    <span class="tech-tag">Git/GitHub</span>
+                    <span class="tech-tag">VisionPro</span>
+                </div>
+
+                <h3>🎓 학력 및 경력</h3>
+                <ul>
+                    <li>명지대학교 - 정보통신공학전공(2022.03 - 2026.02)</li>
+                    <li>인턴 - IPP 일학습병행제</li>
+                </ul>
+
+                <h3>🏆 수상 및 자격증</h3>
+                <ul>
+                    <li>학습법 공모전</li>
+                    <li>정보처리기사 / ADsP / SQLD</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 BangYunseo. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

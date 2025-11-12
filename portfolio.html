@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포트폴리오 - BangYunseo</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .portfolio-section {
+            padding: 3rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-section h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .portfolio-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #666;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="logo">BangYunseo</div>
+        <ul class="nav-links">
+            <li><a href="index.html">홈</a></li>
+            <li><a href="about.html">소개</a></li>
+            <li><a href="portfolio.html">포트폴리오</a></li>
+            <li><a href="contact.html">연락처</a></li>
+            <li id="auth-link">
+                <a href="login.html">로그인</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 포트폴리오 섹션 -->
+    <section class="portfolio-section">
+        <h1>포트폴리오</h1>
+        <p class="portfolio-intro">
+            제가 진행한 프로젝트들입니다. 각 프로젝트를 클릭하면 상세 내용을 확인할 수 있습니다.
+        </p>
+
+        <!-- 필터 버튼 (선택사항) -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterProjects('all')">전체</button>
+            <button class="filter-btn" onclick="filterProjects('web')">웹 개발</button>
+            <button class="filter-btn" onclick="filterProjects('game')">게임</button>
+            <button class="filter-btn" onclick="filterProjects('other')">기타</button>
+        </div>
+
+        <!-- 프로젝트 그리드 -->
+        <div class="project-grid" id="all-projects">
+            <!-- JavaScript로 동적 로딩 -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 BangYunseo. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 페이지 로드 시 모든 프로젝트 표시
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('all-projects');
+            projects.forEach(project => {
+                grid.appendChild(createProjectCard(project));
+            });
+        });
+
+        // 필터링 함수 (나중에 구현)
+        function filterProjects(category) {
+            // 모든 필터 버튼에서 active 제거
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // 클릭한 버튼에 active 추가
+            event.target.classList.add('active');
+
+            // 필터링 로직은 나중에 추가
+            console.log('Filter:', category);
+        }
+    </script>
+</body>
+
+</html>
