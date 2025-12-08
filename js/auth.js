@@ -1,21 +1,3 @@
-// Firebase import (모듈식)
-import { auth, db } from "./firebase-config.js";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import {
-  doc,
-  getDoc,
-  setDoc,
-  query,
-  collection,
-  where,
-  getDocs,
-} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
-
 // ========== 회원가입 ==========
 async function handleRegister(event) {
   event.preventDefault();
@@ -42,33 +24,35 @@ async function handleRegister(event) {
 
   try {
     // Firebase 회원가입
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
+    const userCredential = await auth.createUserWithEmailAndPassword(
       email,
       password
     );
     const uid = userCredential.user.uid;
 
     // Firestore에 사용자 정보 저장
-    await setDoc(doc(db, "users", uid), {
+    await db.collection("users").doc(uid).set({
       uid: uid,
       username: username,
       email: email,
       role: "pending", // 관리자 승인 대기
       gameScore: 0,
-      createdAt: new Date(),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       approved: false,
     });
 
     alert("회원가입이 완료되었습니다! 관리자 승인 대기 중입니다.");
     window.location.href = "login.html";
   } catch (error) {
+    console.error("회원가입 오류:", error);
     let errorMsg = "회원가입에 실패했습니다.";
 
     if (error.code === "auth/email-already-in-use") {
       errorMsg = "이미 가입된 이메일입니다.";
     } else if (error.code === "auth/invalid-email") {
       errorMsg = "유효하지 않은 이메일입니다.";
+    } else if (error.code === "auth/weak-password") {
+      errorMsg = "비밀번호는 최소 6자 이상이어야 합니다.";
     }
 
     showError("register-error", errorMsg);
@@ -91,24 +75,22 @@ async function handleLogin(event) {
 
   try {
     // Firebase 로그인
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
+    const userCredential = await auth.signInWithEmailAndPassword(
       email,
       password
     );
     const uid = userCredential.user.uid;
 
     // 사용자 정보 조회
-    const userDoc = await getDoc(doc(db, "users", uid));
+    const userDoc = await db.collection("users").doc(uid).get();
 
-    if (!userDoc.exists()) {
+    if (!userDoc.exists) {
       throw new Error("사용자 정보를 찾을 수 없습니다.");
     }
 
     const userData = userDoc.data();
 
     // 로컬스토리지에 사용자 정보 저장
-    localStorage.setItem("authToken", userCredential.user.accessToken);
     localStorage.setItem("userUid", uid);
     localStorage.setItem("userEmail", email);
     localStorage.setItem("username", userData.username);
@@ -118,12 +100,15 @@ async function handleLogin(event) {
     alert("로그인되었습니다!");
     window.location.href = "index.html";
   } catch (error) {
+    console.error("로그인 오류:", error);
     let errorMsg = "로그인에 실패했습니다.";
 
     if (error.code === "auth/user-not-found") {
       errorMsg = "등록되지 않은 이메일입니다.";
     } else if (error.code === "auth/wrong-password") {
       errorMsg = "비밀번호가 틀렸습니다.";
+    } else if (error.code === "auth/invalid-email") {
+      errorMsg = "유효하지 않은 이메일 형식입니다.";
     }
 
     showError("login-error", errorMsg);
@@ -144,12 +129,13 @@ function handleGuestLogin() {
 // ========== 로그아웃 ==========
 async function logout() {
   try {
-    await signOut(auth);
+    await auth.signOut();
     localStorage.clear();
     alert("로그아웃되었습니다.");
     window.location.href = "index.html";
   } catch (error) {
     console.error("로그아웃 오류:", error);
+    alert("로그아웃에 실패했습니다.");
   }
 }
 
@@ -164,7 +150,7 @@ function updateAuthUI() {
   if (userRole) {
     // 로그인 상태
     authLink.innerHTML = `
-            <a href="#" onclick="logout()">
+            <a href="#" onclick="logout(); return false;">
                 ${username} (로그아웃)
             </a>
         `;
@@ -181,6 +167,8 @@ function checkPasswordStrength() {
   const password = document.getElementById("reg-password").value;
   const meter = document.getElementById("strength-meter");
 
+  if (!meter) return;
+
   let strength = "weak";
   let text = "약함";
 
@@ -196,6 +184,7 @@ function checkPasswordStrength() {
 
   meter.textContent = `비밀번호 강도: ${text}`;
   meter.className = `password-strength strength-${strength}`;
+  meter.style.display = "block";
 }
 
 // ========== 유틸 함수 ==========
@@ -204,6 +193,11 @@ function showError(elementId, message) {
   if (element) {
     element.textContent = message;
     element.style.display = "block";
+
+    // 5초 후 에러 메시지 숨김
+    setTimeout(() => {
+      element.style.display = "none";
+    }, 5000);
   }
 }
 

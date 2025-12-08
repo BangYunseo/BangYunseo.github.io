@@ -1,4 +1,4 @@
-// Firebase SDK 초기화
+// Firebase SDK 직접 로드 (모듈 방식 아님)
 const firebaseConfig = {
   apiKey: "AIzaSyCxszVF67zjle2vVXFVFMoinQqVMrQNVj8",
   authDomain: "bangyunseo-portfolio.firebaseapp.com",
@@ -10,12 +10,8 @@ const firebaseConfig = {
 };
 
 // Firebase 초기화
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+firebase.initializeApp(firebaseConfig);
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-export { auth, db };
+// 전역으로 내보내기
+const auth = firebase.auth();
+const db = firebase.firestore();
