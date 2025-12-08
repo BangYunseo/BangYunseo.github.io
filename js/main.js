@@ -26,6 +26,7 @@ const projects = [
 // 페이지 로드 시 실행
 document.addEventListener("DOMContentLoaded", () => {
   loadProjects();
+  updateAuthUI(); // ← 추가
 });
 
 // 프로젝트 카드 렌더링
