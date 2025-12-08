@@ -35,7 +35,7 @@ async function handleRegister(event) {
       uid: uid,
       username: username,
       email: email,
-      role: "pending", // 관리자 승인 대기
+      role: "pending",
       gameScore: 0,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       approved: false,
@@ -135,7 +135,6 @@ async function logout() {
     window.location.href = "index.html";
   } catch (error) {
     console.error("로그아웃 오류:", error);
-    alert("로그아웃에 실패했습니다.");
   }
 }
 
@@ -194,7 +193,6 @@ function showError(elementId, message) {
     element.textContent = message;
     element.style.display = "block";
 
-    // 5초 후 에러 메시지 숨김
     setTimeout(() => {
       element.style.display = "none";
     }, 5000);
@@ -206,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateAuthUI();
 });
 
-// 전역으로 함수 노출 (HTML onclick에서 사용 가능)
+// 전역으로 함수 노출
 window.handleRegister = handleRegister;
 window.handleLogin = handleLogin;
 window.handleGuestLogin = handleGuestLogin;

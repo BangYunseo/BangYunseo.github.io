@@ -1,4 +1,4 @@
-// Firebase SDK 직접 로드 (모듈 방식 아님)
+// Firebase SDK 직접 로드
 const firebaseConfig = {
   apiKey: "AIzaSyCxszVF67zjle2vVXFVFMoinQqVMrQNVj8",
   authDomain: "bangyunseo-portfolio.firebaseapp.com",
