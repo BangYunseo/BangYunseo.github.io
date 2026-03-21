@@ -5,12 +5,12 @@
 const posts = [
   {
     id: 1,
-    title: '포트폴리오 사이트를 직접 만들어 보며 배운 것들',
+    title: '나만의 프로젝트 사이트를 직접 만들어 보며 배운 것들',
     summary:
       '순수 HTML/CSS/JS로 정적 사이트를 구성하면서 겪은 시행착오와 배운 점들을 정리했습니다. 프레임워크 없이도 충분히 아름다운 결과물을 만들 수 있습니다.',
     date: '2026-03-21',
     category: '개발',
-    tags: ['HTML', 'CSS', 'JavaScript', 'Portfolio'],
+    tags: ['HTML', 'CSS', 'JavaScript', 'Project'],
     file: 'posts/hello-portfolio.html',
   },
 ];

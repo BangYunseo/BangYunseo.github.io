@@ -1,4 +1,4 @@
-// main.js - BangYunseo Portfolio
+// main.js - BangYunseo Project Site
 
 // 스크롤 페이드인 애니메이션
 function initFadeIn() {
@@ -17,18 +17,6 @@ function initFadeIn() {
   document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 }
 
-// 현재 페이지 네비게이션 링크 활성화
-function setActiveNav() {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach((link) => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-      link.classList.add('active');
-    }
-  });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   initFadeIn();
-  setActiveNav();
 });

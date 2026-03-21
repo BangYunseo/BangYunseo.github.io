@@ -542,6 +542,7 @@ section {
   margin-bottom: 1.2rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -947,9 +948,9 @@ footer a:hover {
 }
 
 /* ========================================
-   PORTFOLIO PAGE
+   PROJECT PAGE
    ======================================== */
-.portfolio-section {
+.project-section {
   padding-top: calc(var(--nav-height) + 3rem);
   max-width: 1200px;
   margin: 0 auto;
