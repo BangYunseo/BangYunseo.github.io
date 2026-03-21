@@ -2,220 +2,79 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>연락처 - BangYunseo</title>
-    <link rel="stylesheet" href="css/main.css">
-    <style>
-        .contact-section {
-            padding: 3rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contact-section h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #2c3e50;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .contact-info h2 {
-            color: #3498db;
-            margin-bottom: 1rem;
-        }
-
-        .contact-items {
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-
-        .contact-item strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-
-        .contact-item a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        .contact-form {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #2980b9;
-        }
-
-        @media (max-width: 768px) {
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연락처 - BangYunseo</title>
+  <meta name="description" content="방윤서에게 연락하기. GitHub, 이메일 정보를 확인하세요.">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-    <!-- 네비게이션 -->
-    <nav>
-        <div class="logo">BangYunseo</div>
-        <ul class="nav-links">
-            <li><a href="index.html">홈</a></li>
-            <li><a href="about.html">소개</a></li>
-            <li><a href="portfolio.html">포트폴리오</a></li>
-            <li><a href="contact.html">연락처</a></li>
-            <li id="auth-link">
-                <a href="login.html">로그인</a>
-            </li>
-        </ul>
-    </nav>
+  <!-- 네비게이션 -->
+  <nav>
+    <div class="logo">BangYunseo</div>
+    <ul class="nav-links">
+      <li><a href="index.html">홈</a></li>
+      <li><a href="about.html">소개</a></li>
+      <li><a href="portfolio.html">포트폴리오</a></li>
+      <li><a href="blog.html">블로그</a></li>
+      <li><a href="contact.html">연락처</a></li>
+    </ul>
+  </nav>
 
-    <!-- 연락처 섹션 -->
-    <section class="contact-section">
-        <h1>연락처</h1>
+  <!-- 연락처 섹션 -->
+  <section class="contact-section">
+    <div class="section-header fade-in" style="text-align:left;margin-bottom:0;">
+      <h2>연락처</h2>
+      <p>프로젝트 문의나 협업 제안은 언제든 환영합니다! 😊</p>
+    </div>
 
-        <div class="contact-content">
-            <!-- 연락 정보 -->
-            <div class="contact-info">
-                <h2>Get in Touch</h2>
-                <p>프로젝트 문의나 협업 제안은 언제든 환영합니다!</p>
-
-                <div class="contact-items">
-                    <div class="contact-item">
-                        <strong>📧 Email</strong>
-                        <a href="mailto:[여기에 이메일]">
-                            [여기에 이메일 주소]
-                        </a>
-                    </div>
-
-                    <div class="contact-item">
-                        <strong>💻 GitHub</strong>
-                        <a href="https://github.com/BangYunseo" target="_blank">
-                            github.com/BangYunseo
-                        </a>
-                    </div>
-
-                    <div class="contact-item">
-                        <strong>💼 LinkedIn</strong>
-                        <a href="[여기에 LinkedIn URL]" target="_blank">
-                            [여기에 LinkedIn 프로필명]
-                        </a>
-                    </div>
-
-                    <div class="contact-item">
-                        <strong>📝 Blog</strong>
-                        <a href="[여기에 블로그 URL]" target="_blank">
-                            [여기에 블로그 주소]
-                        </a>
-                    </div>
-
-                    <div class="contact-item">
-                        <strong>📍 Location</strong>
-                        수원, 경기도
-                    </div>
-                </div>
-            </div>
-
-            <!-- 문의 폼 -->
-            <div class="contact-form">
-                <h2>문의하기</h2>
-                <form id="contact-form" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name">이름 *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">이메일 *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="subject">제목</label>
-                        <input type="text" id="subject" name="subject">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">메시지 *</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">전송하기</button>
-                </form>
-            </div>
+    <div class="contact-grid fade-in">
+      <!-- GitHub -->
+      <a href="https://github.com/BangYunseo" target="_blank" class="contact-card">
+        <div class="contact-card-icon">🐙</div>
+        <div class="contact-card-info">
+          <h3>GitHub</h3>
+          <p>github.com/BangYunseo</p>
         </div>
-    </section>
+      </a>
 
-    <footer>
-        <p>&copy; 2025 BangYunseo. All rights reserved.</p>
-    </footer>
+      <!-- Email -->
+      <div class="contact-card">
+        <div class="contact-card-icon">📧</div>
+        <div class="contact-card-info">
+          <h3>Email</h3>
+          <p style="color:var(--text-muted);">추후 업데이트 예정</p>
+        </div>
+      </div>
 
-    <script src="js/main.js"></script>
-    <script>
-        // 폼 제출 처리 (나중에 백엔드 연동)
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('문의가 접수되었습니다. 빠른 시일 내에 답변드리겠습니다!');
-            // 나중에 실제 백엔드 API 연동
-        }
-    </script>
+      <!-- Location -->
+      <div class="contact-card">
+        <div class="contact-card-icon">📍</div>
+        <div class="contact-card-info">
+          <h3>Location</h3>
+          <p>수원, 경기도</p>
+        </div>
+      </div>
+
+      <!-- Blog -->
+      <a href="blog.html" class="contact-card">
+        <div class="contact-card-icon">📝</div>
+        <div class="contact-card-info">
+          <h3>Blog</h3>
+          <p>개발 기록 블로그</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 BangYunseo. All rights reserved. &nbsp;·&nbsp;
+      <a href="https://github.com/BangYunseo" target="_blank">GitHub</a>
+    </p>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 
 </html>
