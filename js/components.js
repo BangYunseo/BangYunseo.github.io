@@ -19,7 +19,6 @@ function renderNav() {
     <nav>
       <div class="logo"><a href="${rootPath}index.html">BangYunseo</a></div>
       <ul class="nav-links">
-        <li><a href="${rootPath}index.html" class="${page === 'index.html' ? 'active' : ''}">홈</a></li>
         <li><a href="${rootPath}about.html" class="${page === 'about.html' ? 'active' : ''}">소개</a></li>
         <li><a href="${rootPath}project.html" class="${page === 'project.html' ? 'active' : ''}">프로젝트</a></li>
         <li><a href="${rootPath}blog.html" class="${page === 'blog.html' || isPostPage ? 'active' : ''}">블로그</a></li>
