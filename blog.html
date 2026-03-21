@@ -50,7 +50,8 @@
       sorted.forEach((post) => {
         const card = document.createElement('a');
         card.href = 'post.html?id=' + post.id;
-        card.className = 'blog-card fade-in';
+        // 동적 렌더링 요소는 main.js의 옵저버 타이밍과 어긋나 영원히 투명해질 수 있으므로 즉시 visible 부여
+        card.className = 'blog-card fade-in visible';
 
         let displayTitle = post.title || '제목 없음';
         const match = displayTitle.match(/^(\[\d+\])\s*(.*)/);
