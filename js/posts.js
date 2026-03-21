@@ -1,73 +1,33 @@
-// posts.js - BangYunseo Blog Post Data
-// 새 글을 추가하려면 아래 posts 배열에 객체를 추가하세요.
-// content 필드에 Markdown 문법으로 글의 본문을 작성하면 됩니다.
+// 💡 새 글을 작성하는 방법 (분리 원칙 적용)
+// 1. posts/ 폴더에 '[20260322]_파일이름.md' 형식으로 마크다운을 만들어 본문을 적어주세요.
+// 2. 아래 posts 배열에 연결해주세요. 제목(title)의 첫 부분에 '[20260322]' 같은 대괄호를 쓰면 강조 표시됩니다!
 
 const posts = [
   {
     id: 1,
-    title: '나만의 프로젝트 사이트를 직접 만들어 보며 배운 것들',
-    summary:
-      '순수 HTML/CSS/JS로 정적 사이트를 구성하면서 겪은 시행착오와 배운 점들을 정리했습니다. 프레임워크 없이도 충분히 아름다운 결과물을 만들 수 있습니다.',
-    date: '2026-03-21',
-    category: '개발',
-    tags: ['HTML', 'CSS', 'JavaScript', 'Project'],
-    content: `
-개인 프로젝트 사이트를 만들기로 결심했을 때, 처음에는 React나 Next.js 같은 프레임워크를 사용할까 고민했습니다. 
-그런데 막상 시작하니 "나를 소개하는 페이지 하나에 그렇게 무거운 도구가 필요할까?" 싶었습니다.
-그래서 순수한 HTML, CSS, JavaScript만으로 사이트를 구성하기로 했고, 그 과정에서 배운 것들을 기록합니다.
-
-## CSS 변수로 디자인 시스템 만들기
-
-CSS \`:root\`에 변수를 선언해두면, 색상·폰트·여백 등을 일관성 있게 관리할 수 있습니다.
-버튼 하나의 색을 바꾸고 싶을 때 파일 전체를 검색하는 대신, 변수 값 하나만 수정하면 됩니다.
-
-\`\`\`css
-:root {
-  --accent: #58a6ff;
-  --bg-primary: #0d1117;
-  --radius: 12px;
-}
-\`\`\`
-
-처음에는 귀찮게 느껴지지만, 반응형 대응이나 테마 변경 시 작업량이 10배는 줄어듭니다.
-
-## Intersection Observer로 스크롤 애니메이션 구현하기
-
-요소가 뷰포트에 진입할 때 페이드인 효과를 주고 싶었습니다. 예전에는 \`scroll\` 이벤트를 감지해서 처리했지만,
-\`IntersectionObserver\` API를 사용하면 성능 걱정 없이 깔끔하게 구현할 수 있습니다.
-
-\`\`\`javascript
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-in')
-  .forEach(el => observer.observe(el));
-\`\`\`
-
-## 정적 블로그 시스템 설계
-
-이번 개편을 통해 동적 페이지가 아닌 정적 구조에서도 마크다운만으로 글을 작성할 수 있도록 템플릿화하였습니다.
-빌드 도구 없이도 "내가 관리하는 콘텐츠"와 "레이아웃"을 완벽히 분리할 수 있습니다.
-
-## 마치며
-
-프레임워크 없는 순수 웹 기술만으로도 충분히 아름답고 관리하기 쉬운 프로젝트 사이트를 만들 수 있다는 것을 확인했습니다.
-오히려 빌드 과정이나 의존성 관리에서 자유로워 GitHub Pages에 바로 배포할 수 있는 간편함이 좋았습니다.
-앞으로 여러 글들을 이 블로그에 채워나갈 예정입니다. 😊
-    `
+    title: '첫 글',
+    date: '2026-03-22T08:30:00', 
+    category: '회고',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    file: 'posts/[20260322]_1.md'
+  },
+  {
+    id: 2,
+    title: '백준 1000번 A+B 풀이 방식',
+    date: '2026-03-22T15:00:00', 
+    category: '알고리즘',
+    tags: ['C++', '백준', '알고리즘'],
+    file: 'posts/[20260322]_2.md'
   },
 ];
 
-// 날짜 포맷 변환
+// 날짜 포맷 변환 (시간 포함)
 function formatDate(dateStr) {
   const d = new Date(dateStr);
-  return d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+  return d.toLocaleString('ko-KR', { 
+    year: 'numeric', month: 'long', day: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
 }
 
 // 블로그 카드 생성
@@ -76,14 +36,20 @@ function createBlogCard(post) {
   card.href = 'post.html?id=' + post.id;
   card.className = 'blog-card fade-in';
 
+  // 제목에서 [20260322] 패턴 분리 후 뱃지 디자인 적용
+  let displayTitle = post.title;
+  const match = displayTitle.match(/^(\[\d+\])\s*(.*)/);
+  if (match) {
+    displayTitle = `<span style="color: var(--accent); font-family: var(--font-mono); font-size: 0.85em; margin-right: 0.5rem; background: rgba(88, 166, 255, 0.1); padding: 0.2rem 0.4rem; border-radius: 4px; vertical-align: middle;">${match[1]}</span><span style="vertical-align: middle;">${match[2]}</span>`;
+  }
+
   card.innerHTML = `
     <div class="blog-card-meta">
       <span class="blog-card-category">${post.category}</span>
       <span>${formatDate(post.date)}</span>
     </div>
-    <h3>${post.title}</h3>
-    <p>${post.summary}</p>
-    <div class="blog-card-tags">
+    <h3 style="display: flex; align-items: center; line-height: 1.4;">${displayTitle}</h3>
+    <div class="blog-card-tags" style="margin-top: 1rem;">
       ${post.tags.map((t) => `<span class="blog-tag">#${t}</span>`).join('')}
     </div>
     <span class="blog-card-read-more">읽기 →</span>
@@ -145,10 +111,27 @@ function loadPostDetail() {
     tagsContainer.innerHTML = post.tags.map((t) => `<span class="blog-tag">#${t}</span>`).join('');
   }
 
-  // 본문 Markdown 렌더링
+  // 본문 Markdown 비동기 렌더링 (Fetch)
   const contentEl = document.getElementById('post-content');
   if (contentEl && typeof marked !== 'undefined') {
-    contentEl.innerHTML = marked.parse(post.content);
+    if (post.file) {
+      contentEl.innerHTML = '<p style="text-align:center; padding: 2rem; color: var(--text-muted);">글을 불러오는 중입니다...</p>';
+      
+      fetch(post.file)
+        .then(response => {
+          if (!response.ok) throw new Error('파일을 찾을 수 없습니다.');
+          return response.text();
+        })
+        .then(markdownText => {
+          contentEl.innerHTML = marked.parse(markdownText);
+        })
+        .catch(err => {
+          console.error(err);
+          contentEl.innerHTML = '<p style="text-align:center; color:#ff7b72;">글 내용을 불러오는 데 실패했습니다.</p>';
+        });
+    } else {
+      contentEl.innerHTML = '<p>본문 내용이 없습니다.</p>';
+    }
   }
 }
 
