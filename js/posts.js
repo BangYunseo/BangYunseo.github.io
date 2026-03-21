@@ -72,21 +72,6 @@ function createBlogCard(post) {
   return card;
 }
 
-// 블로그 목록 렌더링
-function loadBlogPosts() {
-  const grid = document.getElementById('blog-grid');
-  if (!grid) return;
-
-  if (posts.length === 0) {
-    grid.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:3rem 0;">아직 작성된 글이 없습니다.</p>';
-    return;
-  }
-
-  // 최신순 정렬
-  const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-  sorted.forEach((post) => grid.appendChild(createBlogCard(post)));
-}
-
 // 개별 포스트 화면 렌더링 (post.html 용)
 function loadPostDetail() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -159,6 +144,5 @@ function loadPostDetail() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadBlogPosts();
   loadPostDetail();
 });
