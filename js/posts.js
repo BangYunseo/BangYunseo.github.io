@@ -48,18 +48,25 @@ function createBlogCard(post) {
     ? post.tags.map((t) => `<span class="blog-tag">#${t}</span>`).join('')
     : '';
 
+  // 썸네일 유무에 따른 아이콘/이미지 출력 처리
+  const thumbHtml = post.thumb 
+    ? `<img src="${post.thumb}" alt="${post.title} 썸네일">`
+    : `<span class="blog-card-thumb-icon">📄</span>`;
+
   card.innerHTML = `
-    <div class="blog-card-meta">
-      <span class="blog-card-category">${post.category || '기타'}</span>
-      <span>${formatDate(post.date)}</span>
+    <div class="blog-card-content">
+      <div class="blog-card-meta">
+        <span class="blog-card-category">${post.category || '기타'}</span>
+        <span>${formatDate(post.date)}</span>
+      </div>
+      <h3 style="display: flex; align-items: center; line-height: 1.4; margin-bottom: 0;">${displayTitle}</h3>
+      <div class="blog-card-tags" style="margin-top: 1rem;">
+        ${tagsHtml}
+      </div>
     </div>
-    <h3 style="display: flex; align-items: center; line-height: 1.4; margin-bottom: 0;">${displayTitle}</h3>
-    <!-- summary가 없어진 공간을 메워주는 빈 placeholder p태그 -->
-    <p style="flex-grow: 1; margin: 0; opacity: 0;"></p>
-    <div class="blog-card-tags" style="margin-top: 1rem;">
-      ${tagsHtml}
+    <div class="blog-card-thumb">
+      ${thumbHtml}
     </div>
-    <span class="blog-card-read-more">읽기 →</span>
   `;
 
   return card;
