@@ -860,7 +860,234 @@ section {
   margin-top: 0.15rem;
 }
 
+/* ---- About Profile Items ---- */
+.about-profile-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.about-profile-item:hover {
+  border-color: rgba(88, 166, 255, 0.4);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.about-profile-item .icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(88, 166, 255, 0.1);
+  border-radius: var(--radius-sm);
+}
+
+.about-profile-item .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-profile-item .label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.about-profile-item .value {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.about-profile-item .value a {
+  color: var(--text-primary);
+}
+
+.about-profile-item .value a:hover {
+  color: var(--accent);
+}
+
+/* ---- About Info Cards Extended ---- */
+.info-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.info-card-header .emoji {
+  font-size: 1.5rem;
+}
+
+.info-card-header h2 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.card-divider {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin-bottom: 1.5rem;
+}
+
+.career-item {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border);
+}
+
+.career-header {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.career-header::before {
+  content: '';
+  position: absolute;
+  left: -1.9rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--bg-card);
+}
+
+.company-name {
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+
+.career-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.project-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.project-item h4 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.8rem;
+}
+
+.project-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project-details li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.project-details li strong {
+  color: var(--text-primary);
+  min-width: 40px;
+}
+
+.skill-category {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .skill-category {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+.edu-title {
+  font-size: 1.1rem;
+  color: var(--accent-purple);
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.education-item {
+  padding: 0.5rem 0;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.cert-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.cert-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.cert-date {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  margin-bottom: 0.3rem;
+}
+
+.cert-org {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.award-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 1.2rem;
+  border-left: 3px solid var(--accent-green);
+}
+
+.award-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+
+.award-org {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
 /* ========================================
+
    CONTACT PAGE
    ======================================== */
 .contact-section {
