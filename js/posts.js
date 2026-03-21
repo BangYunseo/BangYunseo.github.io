@@ -37,20 +37,27 @@ function createBlogCard(post) {
   card.className = 'blog-card fade-in';
 
   // 제목에서 [20260322] 패턴 분리 후 뱃지 디자인 적용
-  let displayTitle = post.title;
+  let displayTitle = post.title || '제목 없음';
   const match = displayTitle.match(/^(\[\d+\])\s*(.*)/);
   if (match) {
     displayTitle = `<span style="color: var(--accent); font-family: var(--font-mono); font-size: 0.85em; margin-right: 0.5rem; background: rgba(88, 166, 255, 0.1); padding: 0.2rem 0.4rem; border-radius: 4px; vertical-align: middle;">${match[1]}</span><span style="vertical-align: middle;">${match[2]}</span>`;
   }
 
+  // tags 예외 처리
+  const tagsHtml = (post.tags && Array.isArray(post.tags)) 
+    ? post.tags.map((t) => `<span class="blog-tag">#${t}</span>`).join('')
+    : '';
+
   card.innerHTML = `
     <div class="blog-card-meta">
-      <span class="blog-card-category">${post.category}</span>
+      <span class="blog-card-category">${post.category || '기타'}</span>
       <span>${formatDate(post.date)}</span>
     </div>
-    <h3 style="display: flex; align-items: center; line-height: 1.4;">${displayTitle}</h3>
+    <h3 style="display: flex; align-items: center; line-height: 1.4; margin-bottom: 0;">${displayTitle}</h3>
+    <!-- summary가 없어진 공간을 메워주는 빈 placeholder p태그 -->
+    <p style="flex-grow: 1; margin: 0; opacity: 0;"></p>
     <div class="blog-card-tags" style="margin-top: 1rem;">
-      ${post.tags.map((t) => `<span class="blog-tag">#${t}</span>`).join('')}
+      ${tagsHtml}
     </div>
     <span class="blog-card-read-more">읽기 →</span>
   `;
@@ -126,11 +133,20 @@ function loadPostDetail() {
           contentEl.innerHTML = marked.parse(markdownText);
         })
         .catch(err => {
-          console.error(err);
-          contentEl.innerHTML = '<p style="text-align:center; color:#ff7b72;">글 내용을 불러오는 데 실패했습니다.</p>';
+          console.error('[Fetch Error]', err);
+          contentEl.innerHTML = `
+            <div style="background: rgba(255,75,75,0.1); border: 1px solid rgba(255,75,75,0.3); border-radius: 8px; padding: 2rem; text-align: center; max-width: 600px; margin: 0 auto;">
+              <h3 style="color: #ff7b72; margin-bottom: 1rem;">⚠️ 마크다운 파일을 불러올 수 없습니다.</h3>
+              <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; text-align: left;">
+                브라우저 보안(CORS) 정책 때문에 단순 <strong>로컬 파일 모드(file:///)</strong>에서는 글 내용을 불러올 수 없습니다.<br><br>
+                정상적으로 보시려면 <strong>VS Code의 'Live Server'</strong>를 사용하시거나(우측 하단 Go Live 클릭),<br>
+                GitHub Pages 등에 실제로 배포한 상태에서 확인하셔야 합니다.
+              </p>
+            </div>
+          `;
         });
     } else {
-      contentEl.innerHTML = '<p>본문 내용이 없습니다.</p>';
+      contentEl.innerHTML = '<p>본문 경로(file)가 지정되지 않았습니다.</p>';
     }
   }
 }
