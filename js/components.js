@@ -37,6 +37,9 @@ function renderFooter() {
       <p>&copy; 2026 BangYunseo. All rights reserved. &nbsp;·&nbsp;
         <a href="https://github.com/BangYunseo" target="_blank">GitHub</a>
       </p>
+      <p style="margin-top: 0.5rem; font-size: 0.85em; opacity: 0.8;">
+        ✨ AI의 도움을 받아 제작된 웹사이트입니다.
+      </p>
     </footer>
   `;
 }
