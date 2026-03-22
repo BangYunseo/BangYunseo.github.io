@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const postsDir = path.join(__dirname, 'posts');
-const outputFile = path.join(__dirname, 'js', 'posts-data.js');
+const postsDir = path.join(__dirname, '..', 'posts');
+const outputFile = path.join(__dirname, '..', 'js', 'posts-data.js');
 
 // 1. posts 폴더 내의 모든 .md 파일 읽기
 const files = fs.readdirSync(postsDir).filter(file => file.endsWith('.md'));
@@ -62,7 +62,7 @@ posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
 // 2. js/posts-data.js 파일로 배열 저장
 const fileContent = `// 💡 이 파일은 자동 생성된 데이터입니다. (build-posts.js를 통해 생성됨)
-// 직접 수정하지 마시고, 마크다운 파일을 수정한 후 터미널에서 'node build-posts.js'를 실행하세요!
+// 직접 수정하지 마시고, 마크다운 파일을 수정한 후 터미널에서 'node scripts/build-posts.js'를 실행하세요!
 const posts = ${JSON.stringify(posts, null, 2)};
 `;
 

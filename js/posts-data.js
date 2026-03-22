@@ -1,5 +1,5 @@
 // 💡 이 파일은 자동 생성된 데이터입니다. (build-posts.js를 통해 생성됨)
-// 직접 수정하지 마시고, 마크다운 파일을 수정한 후 터미널에서 'node build-posts.js'를 실행하세요!
+// 직접 수정하지 마시고, 마크다운 파일을 수정한 후 터미널에서 'node scripts/build-posts.js'를 실행하세요!
 const posts = [
   {
     "id": 2,
