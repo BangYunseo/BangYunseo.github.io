@@ -9,6 +9,8 @@ minimal_mistakes_skin: "contrast"
 # 사이트 기본 정보
 # ============================================================
 
+include:
+  - _pages
 locale: "ko-KR"
 title: ""
 title_separator: "·"
