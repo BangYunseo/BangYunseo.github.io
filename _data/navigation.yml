@@ -2,8 +2,8 @@ main:
   - title: "홈"
     url: /
   - title: "소개"
-    url: /_pages/about.md
+    url: /pages/
   - title: "프로젝트"
-    url: /_pages/projects.md
+    url: /pages/
   - title: "블로그"
-    url: /_posts/
+    url: /posts/
