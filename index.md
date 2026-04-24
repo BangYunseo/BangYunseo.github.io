@@ -28,14 +28,12 @@ feature_row:
 
 ## 🛠 기술 스택
 
-| 분야         | 기술                   |
-| ------------ | ---------------------- |
+|     분야     | 기술                   |
+| :----------: | :--------------------- |
 | **BackEnd**  | C++, C#, Node.js       |
 | **FrontEnd** | HTML / CSS, JavaScript |
 | **Library**  | SDL2, Cognex VisionPro |
-| **Tool**     | Visual Studio, VS Code |
-| **SCM**      | Git, GitHub            |
+|   **Tool**   | Visual Studio, VS Code |
+|   **SCM**    | Git, GitHub            |
 
 ---
-
-[모든 프로젝트 보기 →](/projects/){: .btn .btn--primary}
