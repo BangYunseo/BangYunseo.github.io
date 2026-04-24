@@ -1,0 +1,110 @@
+# ============================================================
+# minimal-mistakes 다크 테마 설정
+# ============================================================
+
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "dark"
+
+# ============================================================
+# 사이트 기본 정보
+# ============================================================
+
+locale: "ko-KR"
+title: ""
+title_separator: "·"
+subtitle: ""
+name: ""
+description: ""
+url: ""
+baseurl: ""
+repository: ""
+
+# ============================================================
+# 저자 정보 (사이드바에 표시됨)
+# ============================================================
+
+author:
+  name: ""
+  avatar: "/assets/images/profile.jpg"
+  bio: ""
+  location: ""
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: ""
+
+# ============================================================
+# 빌드 설정
+# ============================================================
+
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-include-cache
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: single
+      author_profile: true
+      read_time: false
+      comments: false
+      share: false
+      related: false
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      show_date: true
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+category_archive:
+  type: liquid
+  path: /categories/
+
+tag_archive:
+  type: liquid
+  path: /tags/
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+exclude:
+  - vendor
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - node_modules
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - README
+  - tmp
