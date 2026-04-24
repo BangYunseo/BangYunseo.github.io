@@ -3,7 +3,7 @@
 # ============================================================
 
 remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "dark"
+minimal_mistakes_skin: "contrast"
 
 # ============================================================
 # 사이트 기본 정보
