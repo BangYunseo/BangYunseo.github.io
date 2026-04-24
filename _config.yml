@@ -2,7 +2,7 @@
 # minimal-mistakes 다크 테마 설정
 # ============================================================
 
-theme: minimal-mistakes-jekyll
+remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: "dark"
 
 # ============================================================
